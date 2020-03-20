@@ -1,6 +1,7 @@
 #include <Keypad.h>
 #include <LiquidCrystal_I2C.h>
 #include <TimeLib.h>
+
 byte enie[8]={B11111,
               B00000,
               B10001,
@@ -118,15 +119,20 @@ void loop() {
   imprSemana();
   imprimirHora();
   key = teclado.getKey();
-  if(key=='#'){
+
+  if (key == '#') {
       menu();
-    }
-  if(key=='*'){
-    if(luz==true){
-    lcd.noBacklight();
-    luz=false;
-    }else{lcd.backlight();
-    luz=true;}
+  }
+
+  if (key == '*') {
+
+    if (luz == true) {
+      lcd.noBacklight();
+      luz=false;
+    } else { 
+      lcd.backlight();
+      luz=true;
+      }
   }
   programaz1();
   programaz2();
@@ -634,7 +640,7 @@ void imprSemana(){
     lcd.clear();
   }
                                              //PROGRAMAR ZONA1
- void programarZ1(){
+ void programarZona(byte horaIni,byte minutIni,byte horaFin,Array diasSemana) {
   boolean salirz1 = false;
   byte contz1=0;
   horaIniZ1=0;
