@@ -1,6 +1,8 @@
+#include <Time.h>
+#include <TimeLib.h>
+#include <Key.h>
 #include <Keypad.h>
 #include <LiquidCrystal_I2C.h>
-#include <TimeLib.h>
 
 byte enie[8] = {B11111,
                 B00000,
@@ -19,52 +21,42 @@ char keys[nfilas][ncolumnas] = {
     {'*', '0', '#', 'D'}};
 const byte pinsFilas[nfilas] = {9, 8, 7, 6};
 const byte pinsColumnas[ncolumnas] = {5, 4, 3, 2};
-Keypad teclado = Keypad(makeKeymap(keys), pinsFilas, pinsColumnas, nfilas, ncolumnas);
-LiquidCrystal_I2C lcd(0x3f, 16, 2);
-time_t t = now();
+Keypad teclado=Keypad(makeKeymap(keys),pinsFilas,pinsColumnas,nfilas,ncolumnas);
+LiquidCrystal_I2C lcd(0x3f,16,2);
+time_t t=now();
 char key;
 String diaSemana;
 boolean luz = false;
 //Variables Zona 1
-Array diasSemanaZ1 = [{
-  false},{false},{false},{false},{false},{false},{false}
-}];
+boolean diasSemanaZ1 [7] = {false,false,false, false,false,false,false };
 byte horaZ1;
 byte minutoZ1;
 byte horaFinZ1;
 byte minutFinZ1;
 boolean pinz1 = false;
 //Variables Zona2
-Array diasSemanaZ2 = [{
-  false},{false},{false},{false},{false},{false},{false}
-}];
+boolean diasSemanaZ2 [7] = {false,false,false, false,false,false,false };
 byte horaZ2;
 byte minutoZ2;
 byte horaFinZ2;
 byte minutFinZ2;
 boolean pinz2 = false;
 //Variables Zona3
-Array diasSemanaZ3 = [{
-  false},{false},{false},{false},{false},{false},{false}
-}];
+boolean diasSemanaZ3 [7] = {false,false,false, false,false,false,false };
 byte horaZ3;
 byte minutoZ3;
 byte horaFinZ3;
 byte minutFinZ3;
 boolean pinz3 = false;
 //Variables Zona4
-Array diasSemanaZ4 = [{
-  false},{false},{false},{false},{false},{false},{false}
-}];
+boolean diasSemanaZ4 [7] = {false,false,false, false,false,false,false };
 byte horaZ4;
 byte minutoZ4;
 byte horaFinZ4;
 byte minutFinZ4;
 boolean pinz4 = false;
 //Variables Zona5
-Array diasSemanaZ5 = [{
-  false},{false},{false},{false},{false},{false},{false}
-}];
+boolean diasSemanaZ5 [7] = {false,false,false, false,false,false,false };
 byte horaZ5;
 byte minutoZ5;
 byte horaFinZ5;
@@ -593,7 +585,7 @@ void ponerHora()
   setTime(hora, minutos, 00, dia, mes, anio);
 }
 
-                                //Metodo Imprimir dia de la semana pantalla
+                                 //Metodo Imprimir dia de la semana pantalla
 void imprSemana()
 {
   if (weekday() == 2)
@@ -666,7 +658,7 @@ void imprimirHora()
   }
 }
 
-                                                  //MENU
+                                                   //MENU
 void menu()
 {
   byte opc = 0;
@@ -783,22 +775,22 @@ void menu()
   delay(500);
   lcd.clear();
 }
-                                                //METODO PROGRAMAR ZONA
+//                                                 //METODO PROGRAMAR ZONA
 
-void programarZona(byte horaIni, byte minutoIni, byte horaFin, byte minutFin, Array diasSemana)
+void programarZona(byte horaIni, byte minutoIni, byte horaFin, byte minutFin, boolean diasSemana [7])
 {
   boolean salir = false;
   horaIni = 0;
   minutoIni = 0;
   horaFin = 0;
   minutFin = 0;
-  diaSemana[0] = false;
-  diaSemana[1] = false;
-  diaSemana[2] = false;
-  diaSemana[3] = false;
-  diaSemana[4] = false;
-  diaSemana[5] = false;
-  diaSemana[6] = false;
+  diasSemana[0] = false;
+  diasSemana[1] = false;
+  diasSemana[2] = false;
+  diasSemana[3] = false;
+  diasSemana[4] = false;
+  diasSemana[5] = false;
+  diasSemana[6] = false;
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print(" HORA DE INICIO");
@@ -1059,7 +1051,7 @@ void programarDiaSemana(String diaString, boolean diaVar)
     }
     if (key == 'A')
     {
-        lcd.print("   "+diaString+": SI   "));
+        lcd.print("   "+diaString+": SI   ");
         diaVar = true;
     }
     if (key == 'D')
@@ -1072,7 +1064,7 @@ void programarDiaSemana(String diaString, boolean diaVar)
 
                                               //ComprobarPrograma
 
-void ComprobarPrograma(byte horaIni,byte minutoIni,byte horaFin,byte minutoFin,Array diasSemana,byte PinSalida,boolean salida)
+void ComprobarPrograma(byte horaIni,byte minutoIni,byte horaFin,byte minutoFin,boolean diasSemana [7],byte PinSalida,boolean salida)
 {
   if (hour() == horaIni && minutoIni == minute())
   {
