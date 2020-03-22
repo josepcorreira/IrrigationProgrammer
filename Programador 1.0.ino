@@ -4,7 +4,6 @@
 #include <Keypad.h>
 #include <LiquidCrystal_I2C.h>
 
-
 byte enie[8] = {B11111,
                 B00000,
                 B10001,
@@ -43,21 +42,21 @@ byte horaFinZ2;
 byte minutFinZ2;
 boolean pinz2 = false;
 //Variables Zona3
-boolean diasSemanaZ3[7] = {false,false,false, false,false,false,false };
+boolean diasSemanaZ3[7] = {false,false,false, false,false,false,false};
 byte horaZ3;
 byte minutoZ3;
 byte horaFinZ3;
 byte minutFinZ3;
 boolean pinz3 = false;
 //Variables Zona4
-boolean diasSemanaZ4[7] = {false,false,false, false,false,false,false };
+boolean diasSemanaZ4[7] = {false,false,false, false,false,false,false};
 byte horaZ4;
 byte minutoZ4;
 byte horaFinZ4;
 byte minutFinZ4;
 boolean pinz4 = false;
 //Variables Zona5
-boolean diasSemanaZ5[7] = {false,false,false, false,false,false,false };
+boolean diasSemanaZ5[7] = {false,false,false, false,false,false,false};
 byte horaZ5;
 byte minutoZ5;
 byte horaFinZ5;
