@@ -4,6 +4,7 @@
 #include <Keypad.h>
 #include <LiquidCrystal_I2C.h>
 
+
 byte enie[8] = {B11111,
                 B00000,
                 B10001,
@@ -28,35 +29,35 @@ char key;
 String diaSemana;
 boolean luz = false;
 //Variables Zona 1
-boolean diasSemanaZ1 [7] = {false,false,false, false,false,false,false };
+boolean diasSemanaZ1[7] = {false,false,false, false,false,false,false};
 byte horaZ1;
 byte minutoZ1;
 byte horaFinZ1;
 byte minutFinZ1;
 boolean pinz1 = false;
 //Variables Zona2
-boolean diasSemanaZ2 [7] = {false,false,false, false,false,false,false };
+boolean diasSemanaZ2[7] = {false,false,false, false,false,false,false};
 byte horaZ2;
 byte minutoZ2;
 byte horaFinZ2;
 byte minutFinZ2;
 boolean pinz2 = false;
 //Variables Zona3
-boolean diasSemanaZ3 [7] = {false,false,false, false,false,false,false };
+boolean diasSemanaZ3[7] = {false,false,false, false,false,false,false };
 byte horaZ3;
 byte minutoZ3;
 byte horaFinZ3;
 byte minutFinZ3;
 boolean pinz3 = false;
 //Variables Zona4
-boolean diasSemanaZ4 [7] = {false,false,false, false,false,false,false };
+boolean diasSemanaZ4[7] = {false,false,false, false,false,false,false };
 byte horaZ4;
 byte minutoZ4;
 byte horaFinZ4;
 byte minutFinZ4;
 boolean pinz4 = false;
 //Variables Zona5
-boolean diasSemanaZ5 [7] = {false,false,false, false,false,false,false };
+boolean diasSemanaZ5[7] = {false,false,false, false,false,false,false };
 byte horaZ5;
 byte minutoZ5;
 byte horaFinZ5;
@@ -777,9 +778,8 @@ void menu()
 }
 //                                                 //METODO PROGRAMAR ZONA
 
-void programarZona(byte horaIni, byte minutoIni, byte horaFin, byte minutFin, boolean diasSemana [7])
+void programarZona(byte horaIni, byte minutoIni, byte horaFin, byte minutFin, boolean diasSemana[7])
 {
-  boolean salir = false;
   horaIni = 0;
   minutoIni = 0;
   horaFin = 0;
@@ -1064,7 +1064,7 @@ void programarDiaSemana(String diaString, boolean diaVar)
 
                                               //ComprobarPrograma
 
-void ComprobarPrograma(byte horaIni,byte minutoIni,byte horaFin,byte minutoFin,boolean diasSemana [7],byte PinSalida,boolean salida)
+void ComprobarPrograma(byte horaIni,byte minutoIni,byte horaFin,byte minutoFin,boolean diasSemana[7],byte PinSalida,boolean salida)
 {
   if (hour() == horaIni && minutoIni == minute())
   {
