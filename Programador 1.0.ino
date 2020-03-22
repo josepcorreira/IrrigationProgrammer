@@ -12,21 +12,27 @@ byte enie[8] = {B11111,
                 B10011,
                 B10001,
                 B0000};
-const byte nfilas = 4;
-const byte ncolumnas = 4;
-char keys[nfilas][ncolumnas] = {
+const byte NFILAS = 4;
+const byte NCOLUMNAS = 4;
+char KEYS[NFILAS][NCOLUMNAS] = {
     {'1', '2', '3', 'A'},
     {'4', '5', '6', 'B'},
     {'7', '8', '9', 'C'},
     {'*', '0', '#', 'D'}};
-const byte pinsFilas[nfilas] = {9, 8, 7, 6};
-const byte pinsColumnas[ncolumnas] = {5, 4, 3, 2};
-Keypad teclado=Keypad(makeKeymap(keys),pinsFilas,pinsColumnas,nfilas,ncolumnas);
+const byte PINSFILAS[NFILAS] = {9, 8, 7, 6};
+const byte PINSCOLUMNAS[NCOLUMNAS] = {5, 4, 3, 2};
+Keypad teclado=Keypad(makeKeymap(KEYS),PINSFILAS,PINSCOLUMNAS,NFILAS,NCOLUMNAS);
 LiquidCrystal_I2C lcd(0x3f,16,2);
 time_t t=now();
 char key;
 String diaSemana;
 boolean luz = false;
+//PINES SALIDA
+const byte SALIDA1 = A1;
+const byte SALIDA2 = A2;
+const byte SALIDA3 = 10;
+const byte SALIDA4 = 11;
+const byte SALIDA5 = 12;
 //Variables Zona 1
 boolean diasSemanaZ1[7] = {false,false,false, false,false,false,false};
 byte horaZ1;
@@ -62,25 +68,19 @@ byte minutoZ5;
 byte horaFinZ5;
 byte minutFinZ5;
 boolean pinz5 = false;
-//PINES SALIDA
-byte salida1 = A1;
-byte salida2 = A2;
-byte salida3 = 10;
-byte salida4 = 11;
-byte salida5 = 12;
                                           //SETUP INICIO
 void setup()
 {
-  pinMode(salida1, OUTPUT);
-  digitalWrite(salida1, HIGH);
-  pinMode(salida2, OUTPUT);
-  digitalWrite(salida2, HIGH);
-  pinMode(salida3, OUTPUT);
-  digitalWrite(salida3, HIGH);
-  pinMode(salida4, OUTPUT);
-  digitalWrite(salida4, HIGH);
-  pinMode(salida5, OUTPUT);
-  digitalWrite(salida5, HIGH);
+  pinMode(SALIDA1, OUTPUT);
+  digitalWrite(SALIDA1, HIGH);
+  pinMode(SALIDA2, OUTPUT);
+  digitalWrite(SALIDA2, HIGH);
+  pinMode(SALIDA3, OUTPUT);
+  digitalWrite(SALIDA3, HIGH);
+  pinMode(SALIDA4, OUTPUT);
+  digitalWrite(SALIDA4, HIGH);
+  pinMode(SALIDA5, OUTPUT);
+  digitalWrite(SALIDA5, HIGH);
   Serial.begin(9600);
   lcd.init();
   lcd.noBacklight();
@@ -111,11 +111,11 @@ void loop()
       luz = true;
     }
   }
-  ComprobarPrograma(horaZ1,minutoZ1,horaFinZ1,minutFinZ1,diasSemanaZ1,salida1,pinz1);
-  ComprobarPrograma(horaZ2,minutoZ2,horaFinZ2,minutFinZ2,diasSemanaZ2,salida2,pinz2);
-  ComprobarPrograma(horaZ3,minutoZ3,horaFinZ3,minutFinZ3,diasSemanaZ3,salida3,pinz3);
-  ComprobarPrograma(horaZ4,minutoZ4,horaFinZ4,minutFinZ4,diasSemanaZ4,salida4,pinz4);
-  ComprobarPrograma(horaZ5,minutoZ5,horaFinZ5,minutFinZ5,diasSemanaZ5,salida5,pinz5);
+  ComprobarPrograma(horaZ1,minutoZ1,horaFinZ1,minutFinZ1,diasSemanaZ1,SALIDA1,pinz1);
+  ComprobarPrograma(horaZ2,minutoZ2,horaFinZ2,minutFinZ2,diasSemanaZ2,SALIDA2,pinz2);
+  ComprobarPrograma(horaZ3,minutoZ3,horaFinZ3,minutFinZ3,diasSemanaZ3,SALIDA3,pinz3);
+  ComprobarPrograma(horaZ4,minutoZ4,horaFinZ4,minutFinZ4,diasSemanaZ4,SALIDA4,pinz4);
+  ComprobarPrograma(horaZ5,minutoZ5,horaFinZ5,minutFinZ5,diasSemanaZ5,SALIDA5,pinz5);
   imprimirEstado();
 }
 
@@ -1242,12 +1242,12 @@ void manual()
       case 0:
         if (pinz1 == true)
         {
-          digitalWrite(salida1, HIGH);
+          digitalWrite(SALIDA1, HIGH);
           pinz1 = false;
         }
         else if (pinz1 == false)
         {
-          digitalWrite(salida1, LOW);
+          digitalWrite(SALIDA1, LOW);
           pinz1 = true;
         }
         salirm = true;
@@ -1255,12 +1255,12 @@ void manual()
       case 1:
         if (pinz2 == true)
         {
-          digitalWrite(salida2, HIGH);
+          digitalWrite(SALIDA2, HIGH);
           pinz2 = false;
         }
         else if (pinz2 == false)
         {
-          digitalWrite(salida2, LOW);
+          digitalWrite(SALIDA2, LOW);
           pinz2 = true;
         }
         salirm = true;
@@ -1268,12 +1268,12 @@ void manual()
       case 2:
         if (pinz3 == true)
         {
-          digitalWrite(salida3, HIGH);
+          digitalWrite(SALIDA3, HIGH);
           pinz3 = false;
         }
         else if (pinz3 == false)
         {
-          digitalWrite(salida3, LOW);
+          digitalWrite(SALIDA3, LOW);
           pinz3 = true;
         }
         salirm = true;
@@ -1281,12 +1281,12 @@ void manual()
       case 3:
         if (pinz4 == true)
         {
-          digitalWrite(salida4, HIGH);
+          digitalWrite(SALIDA4, HIGH);
           pinz4 = false;
         }
         else if (pinz4 == false)
         {
-          digitalWrite(salida4, LOW);
+          digitalWrite(SALIDA4, LOW);
           pinz4 = true;
         }
         salirm = true;
@@ -1294,12 +1294,12 @@ void manual()
       case 4:
         if (pinz5 == true)
         {
-          digitalWrite(salida5, HIGH);
+          digitalWrite(SALIDA5, HIGH);
           pinz5 = false;
         }
         else if (pinz5 == false)
         {
-          digitalWrite(salida5, LOW);
+          digitalWrite(SALIDA5, LOW);
           pinz5 = true;
         }
         salirm = true;
